@@ -6,6 +6,7 @@ import {
   RssIcon,
   SearchIcon,
 } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 
 function SidebarButton({ children }) {
   return (
@@ -16,6 +17,9 @@ function SidebarButton({ children }) {
 }
 
 function Sidebar() {
+  const { data: session, status } = useSession();
+  console.log("session", session);
+
   return (
     <div className="text-gray-500 p-5 text-sm border-r border-gray-900">
       <div className="space-y-4">
@@ -54,7 +58,9 @@ function Sidebar() {
         <hr className="border-t-[0.1px] border-gray-900" />
 
         {[...Array(15)].map((_, i) => (
-          <p className="cursor-pointer hover:text-white">Playlist name...</p>
+          <p key={i} className="cursor-pointer hover:text-white">
+            Playlist name...
+          </p>
         ))}
       </div>
     </div>
